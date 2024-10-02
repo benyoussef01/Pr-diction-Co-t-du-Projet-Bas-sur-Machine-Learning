@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Prédire le coût du projet</title>
+    <style>
+        body {
+            background-image: url('/static/cout.jpeg'); 
+            font-family: Arial, sans-serif;         
+            margin: 0;
+            padding: 20px;
+            background-color: #f7f7f7;
+        }
+
+        .navbar {
+            background-color: #007bff;
+            overflow: hidden;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .navbar a {
+            float: right;
+            display: block;
+            color: #fff;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .navbar a:hover {
+            background-color: #0056b3;
+        }
+
+        #container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+        }
+
+        input[type="number"],
+        input[type="text"],
+        select {
+            width: calc(100% - 42px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            float: right;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="/logout">Déconnexion</a>
+        <a href="/liste_clients">Liste des clients</a>
+        <a href="/liste_projets">Liste des projet</a>
+    </div>
+
+    <div id="container">
+        <h1>Prédire le coût du projet</h1>
+        <form id="prediction-form">
+            <label for="titre_projet">Titre du projet:</label>
+            <input type="text" id="titre_projet" name="titre_projet" required><br><br>
+
+            <label for="taille_projet">Taille du projet:</label>
+            <input type="number" id="taille_projet" name="taille_projet" required><br><br>
+            
+            <label for="complexite">Complexité du projet:</label>
+            <select id="complexite" name="complexite">
+                <option value="Faible">Faible</option>
+                <option value="Moyenne">Moyenne</option>
+                <option value="Élevée">Élevée</option>
+            </select>
+            
+            <label for="nb_ressources_humaines">Nombre de ressources humaines:</label>
+            <input type="number" id="nb_ressources_humaines" name="nb_ressources_humaines" required>
+            
+            <label for="nb_ressources_materielles">Nombre de ressources matérielles:</label>
+            <input type="number" id="nb_ressources_materielles" name="nb_ressources_materielles" required>
+            
+            <label for="duree_projet">Durée du projet (en mois):</label>
+            <input type="number" id="duree_projet" name="duree_projet" required>
+            
+            <label for="risques">Risques potentiels du projet:</label>
+            <select id="risques" name="risques">
+                <option value="Faible">Faible</option>
+                <option value="Modéré">Modéré</option>
+                <option value="Élevé">Élevé</option>
+            </select>
+            
+            <button type="submit">Prédire le coût</button>
+        </form>
+        
+        <div id="result"></div>
+    </div>
+
+    <script>
+        document.getElementById('prediction-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var form = new FormData(this);
+            fetch('/predict', {
+                method: 'POST',
+                body: JSON.stringify(Object.fromEntries(form.entries())),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('result').innerText = 'Coût prédit du projet: ' + data.prediction + ' dinar';
+            })
+            .catch(error => console.error('Erreur:', error));
+        });
+    </script>
+</body>
+</html>

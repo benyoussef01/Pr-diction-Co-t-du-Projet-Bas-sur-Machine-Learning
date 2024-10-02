@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Styles personnalisés */
+        body {
+            background-image: url('/static/client.jpg'); 
+            background-color: #f7f7f7; /* Couleur d'arrière-plan blanche */
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background-color: #0F7DF2; /* Couleur jaune pour la barre de navigation */
+            border-bottom: 1px solid rgba(0,0,0,0.1); /* Bordure inférieure légèrement assombrie */
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            color: #343a40; /* Couleur de texte sombre pour la marque */
+        }
+
+        .navbar-nav .nav-link {
+            color: #0F7DF2; /* Couleur de texte sombre pour les liens de navigation */
+            font-weight: bold; /* Mettre en gras */
+            text-decoration: underline; /* Souligner */
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #000000; /* Couleur de texte noire au survol */
+        }
+
+        .jumbotron {
+            
+            color: #343a40;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .card {
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            margin-bottom: 10px;
+        }
+
+        .btn-import-pdf {
+            background-color: #6c757d;
+            color: #ffffff;
+        }
+
+        .btn-import-pdf:hover {
+            background-color: #495057;
+        }
+    </style>
+</head>
+<body>
+    <!-- Barre de navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Déconnexion</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenu principal -->
+    <div class="container mt-5">
+        <div class="jumbotron">
+            <h1 class="display-4">Bienvenue sur Notre plateforme </h1>
+            <p class="lead">Soumettez votre projet.</p>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-body">
+                <h3 class="card-title">Déposer un nouveau projet</h3>
+                <form action="/import_project" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="project_title">Titre du projet:</label>
+                        <input type="text" class="form-control" id="project_title" name="project_title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="project_description">Description du projet:</label>
+                        <textarea class="form-control" id="project_description" name="project_description" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="project_pdf">Fichier PDF du projet:</label>
+                        <input type="file" class="form-control-file" id="project_pdf" name="project_pdf" accept=".pdf" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary mr-2">Soumettre le projet</button>
+                </form>
+            </div>
+        </div>
+	
+	 
+
+
+    <!-- Scripts JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

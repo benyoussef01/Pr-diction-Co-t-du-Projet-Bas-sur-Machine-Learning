@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page d'accueil</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('/static/index.jpg'); /* Chemin de l'image d'arrière-plan */
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            width: 45%; /* Largeur ajustée pour accueillir les deux boutons côte à côte */
+            padding: 10px;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .space {
+            width: 10px; /* Largeur de l'espace entre les deux boutons */
+            display: inline-block; /* Pour s'assurer que l'espace occupe un espace */
+        }
+        .register-link {
+            background-color: #0056b3;
+            margin-top: 10px;
+        }
+        
+        .register-link a:hover {
+            width: 45%; /* Largeur ajustée pour accueillir les deux boutons côte à côte */
+            padding: 10px;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Connexion</h1>
+        <form method="POST">
+        	<input type="text" name="username" placeholder="Nom d'utilisateur" required>
+         	<input type="password" name="password" placeholder="Mot de passe" required>
+         	<input type="submit" name="action" value="connexion">
+         	<div class="space"></div>
+    		<a href="{{ url_for('register') }}">S'inscrire</a>
+
+	</form>
+        
+    </div>
+</body>
+</html>

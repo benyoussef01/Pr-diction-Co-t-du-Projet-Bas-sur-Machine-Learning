@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        /* CSS Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('/static/register.jpg');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        select {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .login-link {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .login-link a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Inscription</h2>
+        <form action="/register" method="POST">
+            <label for="nom">Nom:</label>
+            <input type="text" id="nom" name="nom" required><br><br>
+            
+            <label for="prenom">Prenom:</label>
+            <input type="text" id="prenom" name="prenom" required><br><br>
+
+            <label for="username">username:</label>
+            <input type="text" id="username" name="username" required><br><br>
+            
+            <label for="password">password:</label>
+            <input type="password" id="password" name="password" required><br><br>
+            
+            <label for="email">Adresse email:</label>
+            <input type="email" id="email" name="email" required><br><br>
+            
+            <label for="address">Adresse:</label>
+            <input type="text" name="adresse" placeholder="Adresse">
+            <label for="telephone">Téléphone:</label>
+            <input type="text" id="telephone" name="telephone" required><br><br> <!-- Ajout du champ Téléphone -->
+
+            
+            
+            <label for="role">Rôle:</label>
+            <select id="role" name="role" required>
+                <option value="client">client</option>
+                <option value="owner">owner</option>
+                
+            </select><br><br>
+            
+            <button type="submit">S'inscrire</button>
+        </form>
+    </div>
+</body>
+</html>
